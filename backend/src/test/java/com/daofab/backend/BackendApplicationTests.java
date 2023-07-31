@@ -1,10 +1,10 @@
-package com.example.demo;
+package com.daofab.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DaofabApplicationTests {
+class BackendApplicationTests {
 
 	@Test
 	void contextLoads() {
