@@ -1,14 +1,20 @@
 package com.daofab.backend;
 
+import com.daofab.backend.service.ParentService;
+import org.json.simple.JSONObject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
 @SpringBootApplication
 @RestController
 public class BackendApplication {
+
+	private final ParentService service = new ParentService();
 
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
@@ -18,4 +24,22 @@ public class BackendApplication {
 	public String hello() {
 		return "Hello World";
 	}
+
+//	http://localhost:8080/parent?id=1
+	@GetMapping("/parent")
+	@ResponseBody
+	public JSONObject parent(@RequestParam(value = "id", defaultValue = "1") String id) {
+		return this.service.getParent(Integer.parseInt(id));
+	}
+
+//	http://localhost:8080/child?id=1
+	@GetMapping("/child")
+	@ResponseBody
+	public JSONObject child(@RequestParam(value = "id", defaultValue = "1") String id) {
+		return this.service.getChild(Integer.parseInt(id));
+	}
+
+
+
+
 }
