@@ -119,7 +119,8 @@ public class ParentService {
         JSONArray pageData = new JSONArray();
         int start = (page - 1) * size;
         int end = start + size;
-        for (int i = start; i < end; i++) {
+        int total = data.size();
+        for (int i = start; i < end && i < total; i++) {
             JSONObject dataObject = (JSONObject) data.get(i);
             dataObject.put("totalPaidAmount", this.getSum(Integer.parseInt(dataObject.get("id").toString())));
             pageData.add(dataObject);
