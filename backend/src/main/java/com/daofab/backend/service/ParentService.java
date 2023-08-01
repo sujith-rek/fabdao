@@ -16,9 +16,9 @@ public class ParentService {
     private final JSONObject child;
 
     /*If JSON data is huge, then
-    * private final HashMap<Integer, JSONObject> parentMap;
-    * private final HashMap<Integer, JSONObject[]> childMap;
-    * */
+     * private final HashMap<Integer, JSONObject> parentMap;
+     * private final HashMap<Integer, JSONObject[]> childMap;
+     * */
 
     public ParentService() {
         JSONParser parser = new JSONParser();
@@ -34,32 +34,32 @@ public class ParentService {
         }
 
         /* As the data is not huge, we can store the data in memory.
-        * If the data is huge, then we can use a HashMap with key as ID
-        * and value as JSONObject. Then we can return the value
-        * corresponding to the key.
-        *
-        * */
+         * If the data is huge, then we can use a HashMap with key as ID
+         * and value as JSONObject. Then we can return the value
+         * corresponding to the key.
+         *
+         * */
 
         /* HashMap<Integer, JSONObject> parentMap = new HashMap<>();
-        *  we use parentMap.put(id, dataObject) to store the data
-        *  and parentMap.get(id) to retrieve the data
-        * */
+         *  we use parentMap.put(id, dataObject) to store the data
+         *  and parentMap.get(id) to retrieve the data
+         * */
 
         /* parentMap = new HashMap<>();
-        *  JSONArray parentData = (JSONArray) parent.get("data");
-        * for (int i = 0; i < parentData.size(); i++) {
-        *   JSONObject dataObject = (JSONObject) parentData.get(i);
-        *  parentMap.put(dataObject.get("id"), dataObject);
-        * }
-        * */
+         *  JSONArray parentData = (JSONArray) parent.get("data");
+         * for (int i = 0; i < parentData.size(); i++) {
+         *   JSONObject dataObject = (JSONObject) parentData.get(i);
+         *  parentMap.put(dataObject.get("id"), dataObject);
+         * }
+         * */
 
         /*  childMap = new HashMap<>();
-        *   JSONArray childData = (JSONArray) child.get("data");
-        * for (int i = 0; i < childData.size(); i++) {
-        *  JSONObject dataObject = (JSONObject) childData.get(i);
-        * childMap.put(dataObject.get("parentId"), dataObject);
-        * }
-        *  */
+         *   JSONArray childData = (JSONArray) child.get("data");
+         * for (int i = 0; i < childData.size(); i++) {
+         *  JSONObject dataObject = (JSONObject) childData.get(i);
+         * childMap.put(dataObject.get("parentId"), dataObject);
+         * }
+         *  */
 
     }
 
@@ -70,23 +70,29 @@ public class ParentService {
         return (JSONObject) data.get(id - 1);
 
         /* If Parent data is not sorted according to ID,
-        * then we can either iterate array or while initializing
-        * the data, we can create a HashMap with key as ID and
-        * value as JSONObject. Then we can return the value
-        * corresponding to the key.
-        *
-        * */
+         * then we can either iterate array or while initializing
+         * the data, we can create a HashMap with key as ID and
+         * value as JSONObject. Then we can return the value
+         * corresponding to the key.
+         *
+         * */
 
         /* Iterating array with normal for loop
-        *   for (int i = 0; i < data.size(); i++) {
-        *      JSONObject dataObject = (JSONObject) data.get(i);
-        *     if (dataObject.get("id").equals(id)) {
-        *        return dataObject;
-        *   }
-        * */
+         *   for (int i = 0; i < data.size(); i++) {
+         *      JSONObject dataObject = (JSONObject) data.get(i);
+         *     if (dataObject.get("id").equals(id)) {
+         *        return dataObject;
+         *   }
+         * */
 
     }
 
+    /* This method is used to get the child data of given parent id.
+     *  We're iterating over the child data and checking if the parentId
+     * is equal to the given id. If it is equal, then we're adding the
+     * data to the result.
+     *
+     * */
     public JSONObject getChild(int id) {
         JSONArray data = (JSONArray) child.get("data");
         JSONObject result = new JSONObject();
@@ -101,6 +107,12 @@ public class ParentService {
         return result;
     }
 
+    /* This method is used to get the sum of paidAmount by A parent.
+     *
+     *  We're first getting the child data of the parent and then
+     *  iterating over the child data to get the sum of paidAmount.
+     *
+     *  */
     private int getSum(int id) {
         JSONObject data = this.getChild(id);
         int sum = 0;
@@ -113,6 +125,12 @@ public class ParentService {
         return sum;
     }
 
+    /* This method is used to get the sum of paidAmount by A parent.
+     * and all other details of the parent of a particular page.
+     */
+    /* First we calculate the start and end index of the page.
+     *  Then we iterate over the data and get the data of the page.
+     * */
     public JSONObject getPage(int page, int size) {
         JSONArray data = (JSONArray) parent.get("data");
         JSONObject result = new JSONObject();
