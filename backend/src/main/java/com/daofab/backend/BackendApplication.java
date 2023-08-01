@@ -39,6 +39,13 @@ public class BackendApplication {
 		return this.service.getChild(Integer.parseInt(id));
 	}
 
+//	http://localhost:8080/page?currentPage=1&pageSize=2
+	@GetMapping("/page")
+	@ResponseBody
+	public JSONObject page(@RequestParam(value = "currentPage", defaultValue = "1") String currentPage,
+						   @RequestParam(value = "pageSize", defaultValue = "2") String pageSize) {
+		return this.service.getPage(Integer.parseInt(currentPage), Integer.parseInt(pageSize));
+	}
 
 
 
