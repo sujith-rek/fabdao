@@ -4,10 +4,7 @@ import com.daofab.backend.service.ParentService;
 import org.json.simple.JSONObject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @SpringBootApplication
@@ -26,6 +23,7 @@ public class BackendApplication {
     }
 
     //	http://localhost:8080/parent?id=1
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/parent")
     @ResponseBody
     public JSONObject parent(@RequestParam(value = "id", defaultValue = "1") String id) {
@@ -33,6 +31,7 @@ public class BackendApplication {
     }
 
     //	http://localhost:8080/child?id=1
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/child")
     @ResponseBody
     public JSONObject child(@RequestParam(value = "id", defaultValue = "1") String id) {
@@ -40,6 +39,7 @@ public class BackendApplication {
     }
 
     //	http://localhost:8080/page?currentPage=1&pageSize=2
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/page")
     @ResponseBody
     public JSONObject page(@RequestParam(value = "currentPage", defaultValue = "1") String currentPage,
