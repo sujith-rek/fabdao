@@ -22,3 +22,15 @@ export class ParentService {
   }
 
 }
+
+
+export type Parent = {
+  id: number;
+  receiver: string;
+  sender: string;
+  totalAmount: number;
+  totalPaidAmount: number;
+}
+
+
+
