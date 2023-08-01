@@ -6,7 +6,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
@@ -24,10 +23,10 @@ public class ParentService {
     public ParentService() {
         JSONParser parser = new JSONParser();
         try {
-            InputStream inputStream = new FileInputStream(new File("src/main/java/com/daofab/backend/service/Parent.json"));
+            InputStream inputStream = new FileInputStream("src/main/java/com/daofab/backend/service/Parent.json");
             String parentString = IOUtils.toString(inputStream);
             this.parent = (JSONObject) parser.parse(parentString);
-            inputStream = new FileInputStream(new File("src/main/java/com/daofab/backend/service/Child.json"));
+            inputStream = new FileInputStream("src/main/java/com/daofab/backend/service/Child.json");
             String childString = IOUtils.toString(inputStream);
             this.child = (JSONObject) parser.parse(childString);
         } catch (Exception e) {
@@ -91,6 +90,7 @@ public class ParentService {
     public JSONObject getChild(int id) {
         JSONArray data = (JSONArray) child.get("data");
         JSONObject result = new JSONObject();
+        result.put("parentId", this.getParent(id));
         for (Object datum : data) {
             JSONObject dataObject = (JSONObject) datum;
             int parentId = Integer.parseInt(dataObject.get("parentId").toString());
@@ -98,6 +98,33 @@ public class ParentService {
                 result.put(dataObject.get("id"), dataObject);
             }
         }
+        return result;
+    }
+
+    private int getSum(int id) {
+        JSONObject data = this.getChild(id);
+        int sum = 0;
+        for (Object datum : data.values()) {
+            JSONObject dataObject = (JSONObject) datum;
+            if (dataObject.containsKey("paidAmount")) {
+                sum += Integer.parseInt(dataObject.get("paidAmount").toString());
+            }
+        }
+        return sum;
+    }
+
+    public JSONObject getPage(int page, int size) {
+        JSONArray data = (JSONArray) parent.get("data");
+        JSONObject result = new JSONObject();
+        JSONArray pageData = new JSONArray();
+        int start = (page - 1) * size;
+        int end = start + size;
+        for (int i = start; i < end; i++) {
+            JSONObject dataObject = (JSONObject) data.get(i);
+            dataObject.put("totalPaidAmount", this.getSum(Integer.parseInt(dataObject.get("id").toString())));
+            pageData.add(dataObject);
+        }
+        result.put("data", pageData);
         return result;
     }
 
