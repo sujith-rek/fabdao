@@ -67,6 +67,9 @@ public class ParentService {
     public JSONObject getParent(int id) {
         // Assuming that the parent data is sorted according to ID
         JSONArray data = (JSONArray) parent.get("data");
+        if (id > data.size()) {
+            return null;
+        }
         return (JSONObject) data.get(id - 1);
 
         /* If Parent data is not sorted according to ID,
@@ -96,6 +99,9 @@ public class ParentService {
     public JSONObject getChild(int id) {
         JSONArray data = (JSONArray) child.get("data");
         JSONObject result = new JSONObject();
+        if (this.getParent(id) == null) {
+            return null;
+        }
         result.put("parent", this.getParent(id));
         JSONArray resultObject = new JSONArray();
         for (Object datum : data) {
