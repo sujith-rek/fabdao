@@ -1,4 +1,4 @@
-import { Component , OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ParentService, Parent } from './services/parent.service';
 
 
@@ -7,19 +7,7 @@ import { ParentService, Parent } from './services/parent.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
   title = 'DAOFAB';
-
-  constructor( private parentService: ParentService ){}
-
-  pageData: any;
-
-  ngOnInit(): void {
-    this.parentService.getPage(1).subscribe((data: any) => {
-      this.pageData = data;
-      console.log(this.pageData);
-    }
-    );
-  }
 
 }
