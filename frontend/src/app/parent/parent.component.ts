@@ -15,13 +15,13 @@ export class ParentComponent implements OnInit {
    */
   constructor(private parentService: ParentService) { }
 
-  
+
   page: number = 1;// current page
   total: number = 2;// total number of entries
   ascendant: boolean = true;// sort order
   loading: boolean = false;// loading state
 
-  data : Parent[] = [];// data to be displayed in the table
+  data: Parent[] = [];// data to be displayed in the table
 
 
   /**

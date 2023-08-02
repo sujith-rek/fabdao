@@ -6,7 +6,7 @@ import { ParentComponent } from './parent/parent.component';
 const routes: Routes = [
   { path: 'child/:id', component: ChildComponent },
   { path: '', component: ParentComponent },
-  {path: '**', component: ParentComponent }
+  { path: '**', component: ParentComponent }
 ];
 
 @NgModule({

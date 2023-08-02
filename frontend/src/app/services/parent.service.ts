@@ -35,7 +35,7 @@ export class ParentService {
 
 
   // base url of the backend
-  private baseUrl : string = 'http://localhost:8080/';
+  private baseUrl: string = 'http://localhost:8080/';
 
 
   // http://localhost:8080/page?currentPage=1&pageSize=2
@@ -44,7 +44,7 @@ export class ParentService {
    * @param page the page number to be fetched
    * @returns data of the parent and its children of the given page number
    */
-  getPage(page: number){
+  getPage(page: number) {
     return this.http.get(this.baseUrl + 'page?currentPage=' + page + '&pageSize=2');
   }
 
@@ -55,7 +55,7 @@ export class ParentService {
    * @param id the id of the parent whose children are to be fetched
    * @returns data of the parent and its children of the given id
    */
-  getChild(id: number){
+  getChild(id: number) {
     return this.http.get(this.baseUrl + 'child?id=' + id);
   }
 

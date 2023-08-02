@@ -1,11 +1,11 @@
-.spinner{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -50px;
-    margin-top: -50px;
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
 }
 
-.child{
-    margin-top: 25px;
+.child {
+  margin-top: 25px;
 }
