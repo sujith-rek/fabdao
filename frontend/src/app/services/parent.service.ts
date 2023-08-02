@@ -1,6 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+export type PrimitiveParent = {
+  id: number,
+  sender: string,
+  receiver: string,
+  totalAmount: number,
+}
+
+export type Parent = {
+  id: number,
+  sender: string,
+  receiver: string,
+  totalAmount: number,
+  totalPaidAmount: number,
+}
+
+export type Child = {
+  id: number,
+  parentId: number,
+  paidAmount: number,
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +48,7 @@ export class ParentService {
     return this.http.get(this.baseUrl + 'page?currentPage=' + page + '&pageSize=2');
   }
 
-  
+
   //	http://localhost:8080/child?id=1
   /**
    * 
