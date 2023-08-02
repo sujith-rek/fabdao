@@ -1,0 +1,38 @@
+<div>
+    <div>
+        <h2>Parent data table</h2>
+    </div>
+</div>
+<div class="parent-div">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Sender</th>
+                <th scope="col">Receiver</th>
+                <th scope="col">Total Amount</th>
+                <th scope="col">Total Paid Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data | 
+                    paginate: { 
+                        itemsPerPage: 2, 
+                        currentPage: page, 
+                        totalItems: total }"
+            >
+                <th scope="row">{{item.id}}</th>
+                <td scope="row">{{item.sender}}</td>
+                <td scope="row">{{item.receiver}}</td>
+                <td scope="row">{{item.totalAmount}}</td>
+                <td scope="row"
+                style="cursor: pointer;"
+                (click)="gotoChild(item.id)"
+                >{{item.totalPaidAmount}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center">
+        <pagination-controls (pageChange)="renderPage($event)"></pagination-controls>
+    </div>
+</div>
