@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ParentService } from '../services/parent.service';
+import { ParentService, Parent } from '../services/parent.service';
+
 
 
 @Component({
@@ -18,8 +19,9 @@ export class ParentComponent implements OnInit {
   page: number = 1;// current page
   total: number = 2;// total number of entries
   ascendant: boolean = true;// sort order
+  loading: boolean = false;// loading state
 
-  data: any = [];// data that will be fetched from backend and then displayed
+  data : Parent[] = [];// data to be displayed in the table
 
 
   /**
@@ -30,10 +32,15 @@ export class ParentComponent implements OnInit {
    * the page number and sets the data and total number of entries
    */
   ngOnInit(): void {
+    this.loading = true;
     this.parentService.getPage(this.page).subscribe((data: any) => {
       this.data = data.data;
       this.total = data.total;
+      this.loading = false;
     });
+    if (this.data.length == 0) {
+      this.loading = false;
+    }
   }
 
 
@@ -47,9 +54,11 @@ export class ParentComponent implements OnInit {
    */
   renderPage(page: number): void {
     this.page = page;
+    this.loading = true;
     this.parentService.getPage(this.page).subscribe((data: any) => {
       this.data = data.data;
       this.total = data.total;
+      this.loading = false;
     });
   }
 
