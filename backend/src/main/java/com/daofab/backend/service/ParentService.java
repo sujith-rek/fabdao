@@ -144,6 +144,7 @@ public class ParentService {
             pageData.add(dataObject);
         }
         result.put("data", pageData);
+        result.put("total", total);
         return result;
     }
 
