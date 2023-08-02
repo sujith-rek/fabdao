@@ -14,6 +14,8 @@ export class ChildComponent implements OnInit {
 
   id: string = ''; // id of parent
   loading: boolean = false; // loading state
+  icon: boolean = false; // icon state
+  ascendant: boolean = true; // ascendant state
 
   data: Child[] = []; // data to be displayed in the table
   parent: PrimitiveParent = {
@@ -51,5 +53,34 @@ export class ChildComponent implements OnInit {
       this.loading = false;
     });
   }
+
+  /**
+   * 
+   * @param column the column to be sorted
+   * 
+   * This method is called when the user clicks on a column header.
+   * It sorts the data in the table according to the column clicked.
+   * If the column is clicked again, the sort order is reversed.
+   * 
+   * The data is sorted in ascending order by default.
+   * 
+   * implemented using data.sort() and the compare function
+   * which returns -1, 0, or 1 depending on the comparison.
+   *
+   */
+  sortData(column: string): void {
+    this.data = [...this.data.sort((a: any, b: any) => {
+      let result = 0;
+      if (a[column] < b[column]) result = -1;
+      else if (a[column] > b[column]) result = 1;
+      else result = 0;
+      return this.ascendant ? result : (result * -1);
+    })];
+
+    this.ascendant = !this.ascendant;
+    if (!this.icon) this.icon = true;
+  }
+
+
 
 }
