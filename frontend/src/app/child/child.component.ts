@@ -11,6 +11,9 @@ export class ChildComponent implements OnInit {
 
   id : string = '';
 
+  data: any = [];
+  parent: any = [];
+
   constructor(
     private route: ActivatedRoute,
     private parentService: ParentService
@@ -20,6 +23,12 @@ export class ChildComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.id += params.get('id');
     });
+    this.parentService.getChild(parseInt(this.id)).subscribe((data: any) => {
+      this.data = data.data;
+      this.parent = data.parent;
+      console.log(this.parent);
+    }
+    );
   }
 
 }

@@ -1,2 +1,27 @@
-<p>child works!</p>
-<p>{{id}}</p>
+<div>
+    <div>
+        <h2>Child Table for {{id}}</h2>
+    </div>
+</div>
+<div class="parent-div">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Sender</th>
+                <th scope="col">Receiver</th>
+                <th scope="col">Total Amount</th>
+                <th scope="col">Paid Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data ">
+                <th scope="row">{{item.id}}</th>
+                <td scope="row">{{parent.sender}}</td>
+                <td scope="row">{{parent.receiver}}</td>
+                <td scope="row">{{parent.totalAmount}}</td>
+                <td scope="row">{{item.paidAmount}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
