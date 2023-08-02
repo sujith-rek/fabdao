@@ -20,6 +20,7 @@ export class ParentComponent implements OnInit {
   total: number = 2;// total number of entries
   ascendant: boolean = true;// sort order
   loading: boolean = false;// loading state
+  icon:boolean = false;// icon state
 
   data: Parent[] = [];// data to be displayed in the table
 
@@ -99,6 +100,7 @@ export class ParentComponent implements OnInit {
     })];
 
     this.ascendant = !this.ascendant;
+    if(!this.icon) this.icon = true;
   }
 
 
