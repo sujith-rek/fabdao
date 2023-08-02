@@ -96,14 +96,16 @@ public class ParentService {
     public JSONObject getChild(int id) {
         JSONArray data = (JSONArray) child.get("data");
         JSONObject result = new JSONObject();
-        result.put("parentId", this.getParent(id));
+        result.put("parent", this.getParent(id));
+        JSONArray resultObject = new JSONArray();
         for (Object datum : data) {
             JSONObject dataObject = (JSONObject) datum;
             int parentId = Integer.parseInt(dataObject.get("parentId").toString());
             if (parentId == id) {
-                result.put(dataObject.get("id"), dataObject);
+                resultObject.add(dataObject);
             }
         }
+        result.put("data", resultObject);
         return result;
     }
 
@@ -115,12 +117,11 @@ public class ParentService {
      *  */
     private int getSum(int id) {
         JSONObject data = this.getChild(id);
+        JSONArray childData = (JSONArray) data.get("data");
         int sum = 0;
-        for (Object datum : data.values()) {
+        for (Object datum : childData) {
             JSONObject dataObject = (JSONObject) datum;
-            if (dataObject.containsKey("paidAmount")) {
-                sum += Integer.parseInt(dataObject.get("paidAmount").toString());
-            }
+            sum += Integer.parseInt(dataObject.get("paidAmount").toString());
         }
         return sum;
     }
