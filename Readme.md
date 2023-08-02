@@ -29,14 +29,16 @@ Java Spring
 - Start the frontend and go to `localhost:4200`
 ## Screenshots
 ### Parent table with pagination and sorting
-![image](https://github.com/sujith-rek/fabdao/assets/89125023/523ca437-7c41-4bc4-b07b-75b658d9fbce)
-![image](https://github.com/sujith-rek/fabdao/assets/89125023/ecad7630-defc-44fe-9f5f-558107dacc70)
-![image](https://github.com/sujith-rek/fabdao/assets/89125023/92278b6a-dcf8-4bfc-a679-7dfe83ce4616)
+![image](https://github.com/sujith-rek/fabdao/assets/89125023/d788fb67-ab9d-4cd3-8398-2a29792c5964)
+![image](https://github.com/sujith-rek/fabdao/assets/89125023/ccd91d71-89e3-45b5-a379-86ae1bf402cb)
+![image](https://github.com/sujith-rek/fabdao/assets/89125023/73ac3334-41ee-46ae-b29b-8caa2a744bee)
+![image](https://github.com/sujith-rek/fabdao/assets/89125023/0cc821c3-c062-44a3-b832-01120be4b94a)
 
 ### Child table
-![image](https://github.com/sujith-rek/fabdao/assets/89125023/50219ddf-a70e-4e07-8d05-51acd039f69d)
+![image](https://github.com/sujith-rek/fabdao/assets/89125023/51879733-b160-41c5-a9c9-85a8945b2756)
+![image](https://github.com/sujith-rek/fabdao/assets/89125023/52dcf954-64ea-4680-be8b-4008c1f9ab58)
+![image](https://github.com/sujith-rek/fabdao/assets/89125023/f710bcb8-3fc3-465f-9e03-cc6146eb260d)
 
-### All tables are responsive 
-![image](https://github.com/sujith-rek/fabdao/assets/89125023/bc925719-788b-47d9-b97a-1f797e23c20e)
-![image](https://github.com/sujith-rek/fabdao/assets/89125023/1e9af15a-a5a2-4729-af41-751d386213a5)
+
+
 
